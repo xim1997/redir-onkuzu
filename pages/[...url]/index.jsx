@@ -11,7 +11,7 @@ export default function Ix({ metadata }) {
 console.log(url)
 
     useEffect(() => {
-        location.href = 'https://dailypositive24.com/' + url
+        // location.href = 'https://dailypositive24.com/' + url
     }, [])
 
 
