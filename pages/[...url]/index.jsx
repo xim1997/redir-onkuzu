@@ -8,7 +8,7 @@ export default function Ix({ metadata }) {
     const router = useRouter()
     const url = router.query.url[0];
 
-console.log(url)
+    console.log(metadata.image)
 
     useEffect(() => {
         // location.href = 'https://dailypositive24.com/' + url
@@ -20,11 +20,11 @@ console.log(url)
 
             <Head>
                 <title>{metadata.title}</title>
-                <meta property="og:title" content={metadata.title} />
-                <meta property="og:url" content={"https://dailypositive24.com/"+url} />
-                <meta property="og:description" content={metadata.description} />
-                <meta property="og:site_name" content="Daily Positive"/>
                 <meta property="og:image" content={metadata.image} />
+                <meta property="og:title" content={metadata.title} />
+                <meta property="og:url" content={"https://dailypositive24.com/" + url} />
+                <meta property="og:description" content={metadata.description} />
+                <meta property="og:site_name" content="Daily Positive" />
                 <meta property="og:image:width" content="1280" />
                 <meta property="og:image:height" content="720" />
             </Head>
