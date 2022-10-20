@@ -3,34 +3,37 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 
-export default function Ix({ metadata }) {
+export default function Ix({ metaTags }) {
 
     const router = useRouter()
     const url = router.query.url[0];
 
-    console.log(metadata.image)
+    // console.log(metaTags)
 
     useEffect(() => {
         setTimeout(() => {
 
-            location.href = 'https://dailypositive24.com/' + url
+            // location.href = 'https://dailypositive24.com/' + url
         }, 1000);
     }, [])
 
 
     return (
         <div>
-            {metadata ?
+            {metaTags &&
+
                 <Head>
-                    <title>{metadata.title}</title>
-                    <meta property="og:image" content={metadata.image} />
-                    <meta property="og:title" content={metadata.title} />
-                    <meta property="og:url" content={"https://dailypositive24.com/" + url} />
-                    <meta property="og:description" content={'' + metadata.description} />
-                    <meta property="og:site_name" content="Daily Positive" />
-                    <meta property="og:image:width" content="1280" />
-                    <meta property="og:image:height" content="720" />
-                </Head> : ''}
+                    {metaTags && Object.entries(metaTags).map((entry) => {
+
+                        console.log(entry)
+                        return (
+
+                            <meta key={entry} property={entry[0]} content={entry[1]} />
+                        )
+                    }
+                    )}
+                </Head>
+            }
         </div>
     )
 }
@@ -57,10 +60,23 @@ export async function getServerSideProps(Context) {
         data = await data.json()
         console.log(data.metadata)
 
+        // const list = [
+        //     { key: 'og:title', value: data.metadata.title },
+        //     { key: 'og:description', value: data.metadata.description },
+        //     { key: 'og:image', value: data.metadata.image },
+        //     { key: 'og:url', value: data.metadata.url },
+        // ]
+
+        const metaTags = {
+            "og:title": ` Ticket Price, Registration, Dates & Reviews`,
+            "og:description": data.metadata.description,
+            "og:image": data.metadata.image,
+            "og:url": data.metadata.url,
+        };
 
         return {
             props: {
-                metadata: data.metadata
+                metaTags
             }
         }
 
