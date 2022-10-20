@@ -33,23 +33,35 @@ export async function getServerSideProps(Context) {
     const { query } = Context
     mainurl = query.url[0]
 
+    try {
 
 
-    let data = await fetch('http://localhost:3000/api/getMetadata', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            url: 'https://dailypositive24.com/' + mainurl
+
+        let data = await fetch('http://localhost:3000/api/getMetadata', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                url: 'https://dailypositive24.com/' + mainurl
+            })
         })
-    })
 
-    data = await data.json()
-    console.log(data.metadata)
+        data = await data.json()
+        console.log(data.metadata)
 
 
-    return {
-        props: {
-            metadata: data.metadata
+        return {
+            props: {
+                metadata: data.metadata
+            }
+        }
+
+    } catch (error) {
+
+        console.log(error)
+        return {
+            props: {
+                metadata: { title: "", image: '' }
+            }
         }
     }
 }

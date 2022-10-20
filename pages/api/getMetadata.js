@@ -28,7 +28,10 @@ export default async function handler(req, res) {
     }
   }
 
-  res.json({ msg: 'no data' })
+  else {
+
+    res.json({ msg: 'no data' })
+  }
 
 
 }
