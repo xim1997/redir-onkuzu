@@ -7,8 +7,7 @@ export default function Ix({ metaTags }) {
 
     const router = useRouter()
     const url = router.query.url[0];
-
-    // console.log(metaTags)
+console.log(metaTags)
 
     useEffect(() => {
         setTimeout(() => {
@@ -28,12 +27,18 @@ export default function Ix({ metaTags }) {
                         console.log(entry)
                         return (
 
-                            <meta key={entry} property={entry[0]} content={entry[1]} />
+                            <meta key={entry[0]} property={entry[0]} content={entry[1]} />
                         )
                     }
                     )}
                 </Head>
+
+
             }
+
+            <div>
+
+            </div>
         </div>
     )
 }
