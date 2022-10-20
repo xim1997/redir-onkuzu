@@ -20,7 +20,7 @@ export default function Ix({ metadata }) {
 
     return (
         <div>
-            {metadata &&
+            {metadata ?
                 <Head>
                     <title>{metadata.title}</title>
                     <meta property="og:image" content={metadata.image} />
@@ -30,7 +30,7 @@ export default function Ix({ metadata }) {
                     <meta property="og:site_name" content="Daily Positive" />
                     <meta property="og:image:width" content="1280" />
                     <meta property="og:image:height" content="720" />
-                </Head>}
+                </Head> : ''}
         </div>
     )
 }
