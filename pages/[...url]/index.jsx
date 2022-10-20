@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 
-export default function Ix({ Image }) {
+export default function Ix({ metadata }) {
 
     const router = useRouter()
     const url = router.query.url[0];
@@ -19,8 +19,8 @@ export default function Ix({ Image }) {
         <div>
 
             <Head>
-                <title></title>
-                <meta property="og:image" content={Image} />
+                <title>{metadata.title}</title>
+                <meta property="og:image" content={metadata.image} />
             </Head>
         </div>
     )
@@ -44,12 +44,12 @@ export async function getServerSideProps(Context) {
     })
 
     data = await data.json()
-
+    console.log(data.metadata)
 
 
     return {
         props: {
-            Image: data.metadata.image
+            metadata: data.metadata
         }
     }
 }
