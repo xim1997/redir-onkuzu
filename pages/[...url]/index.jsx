@@ -12,7 +12,7 @@ console.log(metaTags)
     useEffect(() => {
         setTimeout(() => {
 
-            // location.href = 'https://dailypositive24.com/' + url
+            location.href = 'https://dailypositive24.com/' + url
         }, 1000);
     }, [])
 
