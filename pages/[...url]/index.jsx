@@ -11,7 +11,10 @@ export default function Ix({ metadata }) {
     console.log(metadata.image)
 
     useEffect(() => {
-        // location.href = 'https://dailypositive24.com/' + url
+        setTimeout(() => {
+
+            location.href = 'https://dailypositive24.com/' + url
+        }, 1000);
     }, [])
 
 
@@ -23,7 +26,7 @@ export default function Ix({ metadata }) {
                 <meta property="og:image" content={metadata.image} />
                 <meta property="og:title" content={metadata.title} />
                 <meta property="og:url" content={"https://dailypositive24.com/" + url} />
-                <meta property="og:description" content={metadata.description} />
+                <meta property="og:description" content={'' + metadata.description} />
                 <meta property="og:site_name" content="Daily Positive" />
                 <meta property="og:image:width" content="1280" />
                 <meta property="og:image:height" content="720" />
