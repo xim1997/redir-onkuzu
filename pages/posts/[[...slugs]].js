@@ -30,7 +30,7 @@ export default function Comp({ metaTags }) {
 
 
             }
-<p>hello </p> 
+<p>hello check</p> 
         </div>
     )
 }
