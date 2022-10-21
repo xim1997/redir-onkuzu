@@ -1,39 +1,42 @@
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { update } from '../../redux/slice'
 
 export default function Comp({ metaTags }) {
 
-    const dispatch = useDispatch()
-
-    const router = useRouter()
-    const { slugs } = router.query
-    console.log(metaTags)
-
-
     useEffect(() => {
+        // setTimeout(() => {
 
-
-        dispatch(update({ ...metaTags }))
-
-
-        let data = Math.random() * 100000000000000000
-        // console.log(data)
-        // router.push(`/${data}`)
-
+            location.href = metaTags['og:url']
+        // }, 1000);
     }, [])
 
 
     return (
         <div>
-            hello
+            {metaTags &&
+
+                <Head>
+                    {metaTags && Object.entries(metaTags).map((entry) => {
+
+                        console.log(entry)
+                        return (
+
+                            <meta key={entry[0]} name={entry[0]} content={entry[1]} />
+                        )
+                    }
+                    )}
+                </Head>
+
+
+            }
+            <p>hello check</p>
         </div>
     )
 }
 
 
-export async function getServerSideProps(Context) {
+export async function getStaticProps(Context) {
 
     let mainurl = [];
     let slugString = '';
@@ -56,14 +59,14 @@ export async function getServerSideProps(Context) {
     })
 
     data = await data.json()
-    // console.log(data.metadata)
+    console.log(data.metadata)
 
 
     const metaTags = {
-        title: data.metadata.title,
-        description: data.metadata.description,
-        image: data.metadata.image,
-        url: data.metadata.url,
+        "og:title": data.metadata.title,
+        "og:description": data.metadata.description,
+        "og:image": data.metadata.image,
+        "og:url": data.metadata.url,
     };
 
     return {
@@ -77,3 +80,10 @@ export async function getServerSideProps(Context) {
 
 
 
+export async function getStaticPaths() {
+
+    return {
+        paths: [],
+        fallback: true, // can also be true or 'blocking'
+    }
+}
