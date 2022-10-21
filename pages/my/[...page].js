@@ -15,12 +15,14 @@ export default function Page({ metaTags }) {
     useEffect(() => {
 
 
+
+        
         dispatch(update({ ...metaTags }))
 
 
         let data = Math.random() * 100000000000000000
         // console.log(data)
-        // router.push(`/${data}`)
+        router.push(`/${data}`)
 
     }, [])
 
@@ -43,7 +45,6 @@ export async function getServerSideProps(Context) {
     mainurl.map(x => {
         slugString += x + '/'
     });
-    // console.log(slugString)
 
 
 
