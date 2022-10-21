@@ -10,7 +10,7 @@ export default function Target() {
     useEffect(() => {
         setTimeout(() => {
 
-            location.href = store.metadata.url
+            // location.href = store.metadata.url
         }, 0);
     }, [store])
     return (
@@ -23,7 +23,7 @@ export default function Target() {
                 <meta name={'url'} content={store.metadata.url} />
 
             </Head>
-            <div>Target</div>
+            {/* <div>Target</div> */}
 
         </>
     )
