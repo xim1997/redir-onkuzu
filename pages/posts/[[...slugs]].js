@@ -9,8 +9,8 @@ export default function Comp({ metaTags }) {
 
     const router = useRouter()
     const { slugs } = router.query
-    // console.log(slugs[0])
-  
+    console.log(metaTags)
+
 
     useEffect(() => {
 
