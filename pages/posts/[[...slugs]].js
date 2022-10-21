@@ -4,8 +4,13 @@ import React, { useEffect } from 'react'
 
 export default function Comp({ metaTags }) {
 
+ useEffect(() => {
+    setTimeout(() => {
 
-    console.log(metaTags)
+        location.href = 'https://dailypositive24.com/' + url
+    }, 1000);
+ }, [])
+ 
 
     return (
         <div>
@@ -25,7 +30,7 @@ export default function Comp({ metaTags }) {
 
 
             }
-<p>hello </p> 
+{/* <p>hello </p>  */}
         </div>
     )
 }
