@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 export default function Target() {
 
-    const store = useSelector(x => x.store)
+    const store = useSelector(x => x.store) 
 
     useEffect(() => {
         setTimeout(() => {
