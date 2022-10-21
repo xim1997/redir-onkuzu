@@ -27,6 +27,7 @@ export default function Comp({ metaTags }) {
 
     return (
         <div>
+            hello
         </div>
     )
 }
