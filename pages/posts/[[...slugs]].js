@@ -22,7 +22,7 @@ export default function Comp({ metaTags }) {
         // console.log(data)
         // router.push(`/${data}`)
 
-    }, )
+    }, [])
 
 
     return (

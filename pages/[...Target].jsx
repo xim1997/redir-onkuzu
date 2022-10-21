@@ -12,7 +12,7 @@ export default function Target() {
 
             location.href = store.metadata.url
         }, 0);
-    }, [store])
+    }, [])
     return (
         <>
             <Head>
