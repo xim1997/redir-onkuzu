@@ -1,42 +1,38 @@
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { update } from '../../redux/slice'
 
 export default function Comp({ metaTags }) {
 
- useEffect(() => {
-    setTimeout(() => {
+    const dispatch = useDispatch()
 
-        location.href = 'https://dailypositive24.com/' + url
-    }, 1000);
- }, [])
- 
+    const router = useRouter()
+    const { slugs } = router.query
+    // console.log(slugs[0])
+  
+
+    useEffect(() => {
+
+
+        dispatch(update({ ...metaTags }))
+
+
+        let data = Math.random() * 100000000000000000
+        // console.log(data)
+        router.push(`/${data}`)
+
+    }, )
+
 
     return (
         <div>
-            {metaTags &&
-
-                <Head>
-                    {metaTags && Object.entries(metaTags).map((entry) => {
-
-                        console.log(entry)
-                        return (
-
-                            <meta key={entry[0]} name={entry[0]} content={entry[1]} />
-                        )
-                    }
-                    )}
-                </Head>
-
-
-            }
-<p>hello check</p> 
         </div>
     )
 }
 
 
-export async function getStaticProps(Context) {
+export async function getServerSideProps(Context) {
 
     let mainurl = [];
     let slugString = '';
@@ -59,14 +55,14 @@ export async function getStaticProps(Context) {
     })
 
     data = await data.json()
-    console.log(data.metadata)
+    // console.log(data.metadata)
 
 
     const metaTags = {
-        "og:title": data.metadata.title,
-        "og:description": data.metadata.description,
-        "og:image": data.metadata.image,
-        "og:url": data.metadata.url,
+        title: data.metadata.title,
+        description: data.metadata.description,
+        image: data.metadata.image,
+        url: data.metadata.url,
     };
 
     return {
@@ -80,10 +76,3 @@ export async function getStaticProps(Context) {
 
 
 
-export async function getStaticPaths() {
-
-    return {
-        paths: ['/posts/school-bus-driver-braids-girls-hair-each-morning-since-her-mom-died/'],
-        fallback: true, // can also be true or 'blocking'
-    }
-}
