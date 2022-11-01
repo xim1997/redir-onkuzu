@@ -1,15 +1,12 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React, { useEffect,useLayoutEffect } from 'react'
 
 export default function Comp({ metaTags }) {
 
-    useEffect(() => {
-        // setTimeout(() => {
-
+    useLayoutEffect(() => {
             location.href = metaTags['og:url']
-        // }, 1000);
-    }, [])
+         }, [])
 
 
     return (
@@ -30,7 +27,7 @@ export default function Comp({ metaTags }) {
 
 
             }
-            <p>hello check</p>
+            {/* <p>hello check</p> */}
         </div>
     )
 }
@@ -50,7 +47,8 @@ export async function getStaticProps(Context) {
 
 
 
-    let data = await fetch('http://localhost:3000/api/getMetadata', {
+    // let data = await fetch('http://localhost:3000/api/getMetadata', {
+    let data = await fetch('https://vercelredirect-nine.vercel.app/api/getMetadata', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -84,6 +82,6 @@ export async function getStaticPaths() {
 
     return {
         paths: [],
-        fallback: true, // can also be true or 'blocking'
+        fallback: 'blocking', // can also be true or 'blocking'
     }
 }
