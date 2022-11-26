@@ -47,12 +47,11 @@ export async function getStaticProps(Context) {
 
 
 
-    // let data = await fetch('http://localhost:3000/api/getMetadata', {
-    let data = await fetch('https://vercelredirect-nine.vercel.app/api/getMetadata', {
+    let data = await fetch('http://localhost:3000/api/getMetadata', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            url: 'https://dailypositive24.com/' + slugString
+            url: 'http://kricketwala.com/' + slugString
         })
     })
 
