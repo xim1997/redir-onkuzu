@@ -43,7 +43,7 @@ export async function getStaticProps(Context) {
     mainurl.map(x => {
         slugString += x + '/'
     });
-    // console.log(slugString)
+    console.log(slugString)
 
 
 
